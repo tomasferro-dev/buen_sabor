@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ejemplo'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // tus dependencias van acá
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.38'
+}
