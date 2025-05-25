@@ -2,18 +2,11 @@ package org.example;
 
 import lombok.*;
 
+@Builder
+@Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Builder
 public class UnidadMedida {
     private String denominacion;
-
-    @Override
-    public String toString() {
-        return "UnidadMedida{" +
-                "denominacion='" + denominacion + '\'' +
-                '}';
-    }
 }
+
