@@ -26,4 +26,5 @@ public abstract class Articulo extends Base {
     public void removeImagen(Imagen imagen) {
         imagenes.remove(imagen);
     }
+
 }

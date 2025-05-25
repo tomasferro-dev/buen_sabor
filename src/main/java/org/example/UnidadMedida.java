@@ -1,6 +1,7 @@
 package org.example;
 
 import lombok.*;
+
 @Builder
 @Getter @Setter @ToString
 @NoArgsConstructor
@@ -8,3 +9,4 @@ import lombok.*;
 public class UnidadMedida {
     private String denominacion;
 }
+
