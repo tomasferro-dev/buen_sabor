@@ -32,6 +32,14 @@ public class Main {
 
         Imagen imagen = new Imagen("Imagenaz");
 
+
+
+
+
+
+
+
+
         //Imagen
 
         Imagen imagen1 = new Imagen("Imagenaz");
@@ -48,20 +56,48 @@ public class Main {
         //Articulos
 
 
-        ArticuloInsumo articuloInsumo1 = new ArticuloInsumo("Quilmes 1L", 5000,
-                2500, 100, 150,false);
 
-        ArticuloInsumo articuloInsumo2 = new ArticuloInsumo("Pizza Especial", 15000,
-                7500, 100, 150,true);
+        ArticuloInsumo articuloInsumo1 = ArticuloInsumo.builder()
+                .denominacion("Quilmes")
+                .precioVenta(50)
+                .unidadMedida(unidadMedida)
+                .precioCompra(20)
+                .stockActual(50)
+                .stockMaximo(100)
+                .esParaElaborar(false)
+                .build();
+
+        ArticuloInsumo articuloInsumo2 = ArticuloInsumo.builder()
+                .denominacion("Pizza Especial")
+                .precioVenta(500)
+                .unidadMedida(unidadMedida)
+                .precioCompra(210)
+                .stockActual(500)
+                .stockMaximo(10000)
+                .esParaElaborar(true)
+                .build();
+
 
         articuloInsumo1.addImagen(imagen1);
         articuloInsumo2.addImagen(imagen2);
 
-        DetallePedido detallePedido1 = new DetallePedido(1,0.0);
-        detallePedido1.setArticulo(articuloInsumo1);
+//        DetallePedido detallePedido1 = new DetallePedido(1,0.0);
+//        detallePedido1.setArticulo(articuloInsumo1);
+//
+//        DetallePedido detallePedido2 = new DetallePedido(2, 0.0);
+//        detallePedido2.setArticulo(articuloInsumo2);
 
-        DetallePedido detallePedido2 = new DetallePedido(2, 0.0);
-        detallePedido2.setArticulo(articuloInsumo2);
+        DetallePedido detallePedido1 = DetallePedido.builder()
+                .cantidad(1)
+                .subTotal(0.0)
+                .articulo(articuloInsumo1)
+                .build();
+
+        DetallePedido detallePedido2 = DetallePedido.builder()
+                .cantidad(2)
+                .subTotal(0.0)
+                .articulo(articuloInsumo2)
+                .build();
 
 
         ArticuloManufacturadoDetalle articuloManufacturadoDetalle1 = new ArticuloManufacturadoDetalle(1);
@@ -133,6 +169,11 @@ public class Main {
         empresa.addSucursal(sucursal1);
         empresa.addSucursal(sucursal2);
 
+
+
+
+
+
         //Facturas
         Factura factura1 = new Factura(LocalDate.now(), 80, "akeu", "parqrqasd","pasdadad", FormaPago.MERCADOPAGO,5.0);
         Factura factura2 = new Factura(LocalDate.now(), 90, "acadc", "587ad", "poadhaduah", FormaPago.EFECTIVO, 905.5);
@@ -176,7 +217,7 @@ public class Main {
         cliente2.addPedidos(pedido2);
 
 
-        System.out.println(empresa.toString());
+        System.out.println(empresa);
 
 
 

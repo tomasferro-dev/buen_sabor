@@ -1,64 +1,40 @@
 package org.example;
+
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@ToString
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Categoria  extends Base {
 
-public class Categoria {
     private String denominacion;
-    private Set<Articulo> articulos;
-    private Set<Categoria> subcategorias;
-    private Categoria categoriaPadre = null;
 
-    public Categoria(String denominacion) {
-        this.denominacion = denominacion;
-    }
+    @Builder.Default
+    private Set<Articulo> articulos = new HashSet<>();
 
-    public String getDenominacion() {
-        return denominacion;
-    }
+    @Builder.Default
+    private Set<Categoria> subcategorias = new HashSet<>();
 
-    public void setDenominacion(String denominacion) {
-        this.denominacion = denominacion;
-    }
-
-    public Set<Articulo> getArticulos() {
-        return articulos;
-    }
+    private Categoria categoriaPadre;
 
     public void agregarArticulo(Articulo articulo) {
-        if (this.articulos == null) {
-            this.articulos = new HashSet<>();
-        }
         this.articulos.add(articulo);
     }
 
-    public Set<Categoria> getSubcategorias() {
-        return subcategorias;
-    }
-
     public void agregarSubcategoria(Categoria subcategoria) {
-        if (this.subcategorias == null) {
-            this.subcategorias = new HashSet<>();
-        }
         subcategoria.setCategoriaPadre(this);
         this.subcategorias.add(subcategoria);
     }
 
-    public Categoria getCategoriaPadre() {
-        return categoriaPadre;
-    }
-
-    public void setCategoriaPadre(Categoria categoriaPadre) {
-        this.categoriaPadre = categoriaPadre;
-    }
-
     @Override
-    public String toString() {
-        return "Categoria{" +
-                "denominacion='" + denominacion + '\'' +
-                ", articulos=" + articulos +
-                ", subcategorias=" + subcategorias +
-
-                '}';
+    public String getInfo() {
+        return "";
     }
 }
