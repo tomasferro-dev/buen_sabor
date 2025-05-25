@@ -12,8 +12,8 @@ import java.util.HashSet;
 @AllArgsConstructor
 @ToString
 public abstract class Articulo extends Base {
-    protected String denominacion;
-    protected double precioVenta;
+    private String denominacion;
+    private double precioVenta;
     private UnidadMedida unidadMedida;
 
     @Builder.Default

@@ -3,12 +3,15 @@ package org.example;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
 
 @Getter @Setter @ToString
 public abstract class Base {
-    protected Long id;
-    protected String nombre;
-    protected boolean eliminado = false;
+    private Long id;
+    private String nombre;
+    private boolean eliminado = false;
 
     public Base() {}
 

@@ -1,9 +1,19 @@
 package org.example;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
+@Getter
+@Setter
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 
-public class Cliente {
+public class Cliente extends Base {
     private String nombre;
     private String apellido;
     private String telefono;
@@ -11,29 +21,17 @@ public class Cliente {
     private LocalDate fechaNacimiento;
     private Imagen imagen;
 
-    private HashSet<Pedido> pedidos;
-    private HashSet<Domicilio> domicilios;
+    @Builder.Default
+    private Set<Pedido> pedidos = new HashSet<>();
+    @Builder.Default
+    private Set<Domicilio> domicilios = new HashSet<>();
     private Usuario usuario;
 
-    public Cliente(String nombre, String apellido, String telefono, String email, LocalDate fechaNacimiento) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.email = email;
-        this.fechaNacimiento = fechaNacimiento;
-    }
 
-    public Cliente(String nombre, String apellido, String telefono, String email, LocalDate fechaNacimiento, Imagen imagen, Usuario usuario) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.email = email;
-        this.fechaNacimiento = fechaNacimiento;
-        this.imagen = imagen;
-        this.usuario = usuario;
-    }
 
-    public Cliente() {}
+
+
+
 
     public void addPedidos(Pedido pedido) {
         if (pedidos == null) {
@@ -54,74 +52,11 @@ public class Cliente {
         domicilios.remove(domicilio);
         }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Imagen getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(Imagen imagen) {
-        this.imagen = imagen;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     @Override
-    public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", imagen=" + imagen +
-                ", pedidos=" + pedidos +
-                ", domicilios=" + domicilios +
-                ", usuario=" + usuario +
-                '}';
+    public String getInfo() {
+        return "";
     }
+
+
 }
