@@ -11,19 +11,15 @@ import java.util.Set;
 @SuperBuilder
 @ToString
 
-public class Empresa {
+public class Empresa extends Base {
     
     private String nombre;
     private String razonSocial;
     private Integer cuil;
+    @Builder.Default
     private Set<Sucursal> sucursales = new HashSet<>();
 
-    public Empresa (String nombre, String razonSocial, int Cuil) {
 
-        this.nombre = nombre;
-        this.razonSocial = razonSocial;
-        this.cuil = Cuil;
-    }
 
     public void addSucursal(Sucursal sucursal){
         this.sucursales.add(sucursal);
@@ -34,5 +30,9 @@ public class Empresa {
         this.sucursales.remove(sucursal);
     }
 
+    @Override
+    public String getInfo() {
+        return "";
+    }
 
 }

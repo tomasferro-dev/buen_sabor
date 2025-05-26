@@ -8,11 +8,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categoria  extends Base {
+public class Categoria extends Base {
 
     private String denominacion;
 
@@ -36,5 +36,14 @@ public class Categoria  extends Base {
     @Override
     public String getInfo() {
         return "";
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "denominacion='" + denominacion + '\'' +
+                ", articulos=" + articulos +
+                ", subcategorias=" + subcategorias +
+                '}';
     }
 }

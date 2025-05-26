@@ -13,28 +13,20 @@ import java.util.Set;
 @SuperBuilder
 @ToString
 
-public class Sucursal {
+public class Sucursal extends Base {
 
     private String nombre;
     private LocalTime horarioApertura;
     private LocalTime horarioCierre;
+    @Builder.Default
     private Set<Promocion> promociones = new HashSet<>();
-    private Set<Categoria> categorias;
+    @Builder.Default
+    private Set<Categoria> categorias = new HashSet<>();
     private Domicilio domicilio;
 
-    public Sucursal (String nombre, LocalTime horarioApertura, LocalTime horarioCierre) {
-        this.nombre = nombre;
-        this.horarioApertura = horarioApertura;
-        this.horarioCierre = horarioCierre;
-    }
 
-    public Domicilio getDomicilio() {
-        return domicilio;
-    }
 
-    public void setDomicilio(Domicilio domicilio) {
-        this.domicilio = domicilio;
-    }
+
 
     public void addCategoria(Categoria categoria) {
         if (categorias == null) {
@@ -53,5 +45,10 @@ public class Sucursal {
 
     public void removePromocion(Promocion promocion) {
         promociones.remove(promocion);
+    }
+
+    @Override
+    public String getInfo() {
+        return "";
     }
 }

@@ -6,44 +6,87 @@ import java.time.LocalTime;
 public class Main {
     public static void main(String[] args) {
         //Pais y provincia
-        Pais argentina = new Pais("Argentina");
-        Provincia mendoza = new Provincia("Mendoza",argentina);
+
+
+
+         Pais argentina = Pais.builder()
+                 .nombre("Argentina")
+                 .build();
+
+         Provincia mendoza = Provincia.builder().
+                 nombre("Mendoza")
+                 .pais(argentina)
+                 .build();
+
+
+
+
+
 
         //Localidades
-        Localidad maipu = new Localidad("Maipu",mendoza);
-        Localidad godoyCruz = new Localidad("Godoy Cruz",mendoza);
-        Localidad guaymallen = new Localidad("Guaymallen",mendoza);
+
+
+        Localidad maipu = Localidad.builder().
+                nombre("Maipu")
+                .provincia(mendoza)
+                .build();
+
+        Localidad godoyCruz = Localidad.builder()
+                .nombre("Godoy Cruz")
+                .provincia(mendoza)
+                .build();
+
+        Localidad guaymallen = Localidad.builder()
+                .nombre("Guaymallen")
+                .provincia(mendoza)
+                .build();
+
+
 
         //Usuarios
-        Usuario usuario1 = new Usuario("001","DavidLopez");
-        Usuario usuario2 = new Usuario("002","FerroTomi");
+
+
+        Usuario usuario1 = Usuario.builder()
+                .auth0Id("001")
+                .username("DavidLopez")
+                .build();
+        Usuario usuario2 = Usuario.builder()
+                .auth0Id("002")
+                .username("FerroTomi")
+                .build();
+
+
 
         //direcciones
-        Domicilio d1 = new Domicilio("San Martin", 1000, 5501, maipu);
-        Domicilio d2 = new Domicilio("San Juan", 500, 5502, godoyCruz);
-
-
-        //Domicilio
-
-        Domicilio domicilio = new Domicilio("San Miguel", 111, 5503, guaymallen);
-        Domicilio domicilio2 = new Domicilio("San Pedro", 222, 5504, godoyCruz);
-
-        //Imagen
-
-        Imagen imagen = new Imagen("Imagenaz");
+//
+        Domicilio d1 = Domicilio.builder()
+                .localidad(maipu)
+                .nombre("San Martín")
+                .cp(5501)
+                .numero(1000)
+                .build();
 
 
 
-
-
-
-
+        Domicilio d2 = Domicilio.builder()
+                .localidad(godoyCruz)
+                .nombre("San Juan")
+                .cp(5502)
+                .numero(500)
+                .build();
 
 
         //Imagen
 
-        Imagen imagen1 = new Imagen("Imagenaz");
-        Imagen imagen2 = new Imagen("Imago");
+
+
+        Imagen imagen1 = Imagen.builder()
+                .denominacion("Imagenaz")
+                .build();
+
+        Imagen imagen2 = Imagen.builder()
+                .denominacion("Imago")
+                .build();
 
 
 
@@ -51,7 +94,10 @@ public class Main {
 
         //Unidad de Medida
 
-        UnidadMedida unidadMedida = new UnidadMedida("Kg");
+
+        UnidadMedida unidadMedida = UnidadMedida.builder()
+                .denominacion("Kg")
+                .build();
 
         //Articulos
 
@@ -78,14 +124,10 @@ public class Main {
                 .build();
 
 
-        articuloInsumo1.addImagen(imagen1);
-        articuloInsumo2.addImagen(imagen2);
+             articuloInsumo1.addImagen(imagen1);
+             articuloInsumo2.addImagen(imagen2);
 
-//        DetallePedido detallePedido1 = new DetallePedido(1,0.0);
-//        detallePedido1.setArticulo(articuloInsumo1);
-//
-//        DetallePedido detallePedido2 = new DetallePedido(2, 0.0);
-//        detallePedido2.setArticulo(articuloInsumo2);
+
 
         DetallePedido detallePedido1 = DetallePedido.builder()
                 .cantidad(1)
@@ -100,63 +142,132 @@ public class Main {
                 .build();
 
 
-        ArticuloManufacturadoDetalle articuloManufacturadoDetalle1 = new ArticuloManufacturadoDetalle(1);
+
+        ArticuloManufacturadoDetalle articuloManufacturadoDetalle1 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(8)
+                .articuloInsumo(articuloInsumo1)
+                .build();
+
+
         articuloManufacturadoDetalle1.setArticuloInsumo(articuloInsumo1);
 
-        ArticuloManufacturadoDetalle articuloManufacturadoDetalle2 = new ArticuloManufacturadoDetalle(2);
+        ArticuloManufacturadoDetalle articuloManufacturadoDetalle2 = ArticuloManufacturadoDetalle.builder()
+                .cantidad(15)
+                .articuloInsumo(articuloInsumo2)
+                .build();
         articuloManufacturadoDetalle2.setArticuloInsumo(articuloInsumo2);
 
-        ArticuloManufacturado articuloManufacturado1 = new ArticuloManufacturado("Esto es un art manufacturado", 50, "Se hace de esta forma", "Esta es una denominacio");
+// Articulo Manufacturado
 
-        ArticuloManufacturado articuloManufacturado2 = new ArticuloManufacturado("Esto es otro articulo manufacturado", 40, "Se hace de esta otra forma", "Esta es una denominacio");
-        ArticuloManufacturado articuloManufacturado3 = new ArticuloManufacturado("Otro art manufacturado", 20, "Se prepara", "Tiene una denominacion");
+        ArticuloManufacturado articuloManufacturado1 = ArticuloManufacturado.builder()
+                .descripcion("Esto es un art manufacturado")
+                .tiempoEstimadoMinutos(50)
+                .preparacion("Se hace de esta forma")
+                .denominacion("esta es una denominacio")
+                .precioVenta(50.5)
+                .unidadMedida(unidadMedida)
+                .build();
+
 
         articuloManufacturado1.addDetalle(articuloManufacturadoDetalle1);
         articuloManufacturado1.addImagen(imagen1);
         articuloManufacturado1.setUnidadMedida(unidadMedida);
 
 
-        articuloManufacturado2.addDetalle(articuloManufacturadoDetalle2);
+        ArticuloManufacturado articuloManufacturado2 = ArticuloManufacturado.builder()
+                .descripcion("Esto es un art manufacturado")
+                .tiempoEstimadoMinutos(50)
+                .preparacion("Se hace de esta forma")
+                .denominacion("esta es una denominacio")
+                .precioVenta(50.5)
+                .unidadMedida(unidadMedida)
+                .build();
         articuloManufacturado2.addImagen(imagen2);
         articuloManufacturado2.setUnidadMedida(unidadMedida);
 
         // Categorias
 
-        Categoria categoria1= new Categoria("Galletas");
-        Categoria subCategoria1= new Categoria("galletas Dulces");
+
+
+        Categoria categoria1 = Categoria.builder()
+                .denominacion("Galletas")
+                .build();
+        Categoria subCategoria1 = Categoria.builder()
+                .denominacion("Galletas Dulces")
+                .build();
         categoria1.agregarSubcategoria(subCategoria1);
         categoria1.agregarArticulo(articuloManufacturado1);
         categoria1.agregarArticulo(articuloManufacturado2);
 
-        Categoria categoria2= new Categoria("Congelados");
-        Categoria subCategoria2= new Categoria("Facturas");
+
+
+
+        Categoria categoria2 = Categoria.builder()
+                .denominacion("Congelados")
+                .build();
+        Categoria subCategoria2 = Categoria.builder()
+                .denominacion("Congelados")
+                .build();
         categoria2.agregarSubcategoria(subCategoria2);
         categoria2.agregarArticulo(articuloManufacturado1);
         categoria2.agregarArticulo(articuloManufacturado2);
 
-        subCategoria2.agregarArticulo(articuloManufacturado3);
 
         //Promociones
 
-        Promocion promocion1 = new Promocion("Promo otoño", LocalDate.now(), LocalDate.now(), LocalTime.now(), LocalTime.now(), 5.50, 1.2, TipoPromocion.PROMOCION1);
+
+
+        Promocion promocion1 = Promocion.builder()
+                .denominacion("Promo otoño")
+                .fechaDesde(LocalDate.now())
+                .fechaHasta(LocalDate.now())
+                .horaDesde(LocalTime.now())
+                .horaHasta(LocalTime.now())
+                .precioDescuento(5.50)
+                .precioPromocional(5.50)
+                .tipoPromocion(TipoPromocion.PROMOCION1)
+                .build();
         promocion1.addImagenes(imagen1);
         promocion1.addArticulos(articuloManufacturado1);
 
-        Promocion promocion2 = new Promocion("Promo cena", LocalDate.now(), LocalDate.now(), LocalTime.now(), LocalTime.now(), 51.50, 2.2, TipoPromocion.HAPPYHOUR);
+//        Promocion promocion2 = new Promocion("Promo cena", LocalDate.now(), LocalDate.now(), LocalTime.now(), LocalTime.now(), 51.50, 2.2, TipoPromocion.HAPPYHOUR);
+        Promocion promocion2 = Promocion.builder()
+                .denominacion("Promo cena")
+                .fechaDesde(LocalDate.now())
+                .fechaHasta(LocalDate.now())
+                .horaDesde(LocalTime.now())
+                .horaHasta(LocalTime.now())
+                .precioDescuento(51.50)
+                .precioPromocional(55.50)
+                .tipoPromocion(TipoPromocion.HAPPYHOUR)
+                .build();
+
         promocion2.addImagenes(imagen2);
         promocion2.addArticulos(articuloManufacturado2);
 
 
         // Sucursales
 
-        Sucursal sucursal1= new Sucursal("Casa Matriz", LocalTime.now(), LocalTime.now().plus(Duration.ofHours(8)));
+
+        Sucursal sucursal1 = Sucursal.builder()
+                .nombre("Casa Matriz")
+                .horarioApertura(LocalTime.now())
+                .horarioCierre(LocalTime.now().plus(Duration.ofHours(8)))
+                .build();
         sucursal1.setDomicilio(d1);
         sucursal1.addCategoria(categoria1);
 
         sucursal1.addPromocion(promocion1);
         sucursal1.addPromocion(promocion2);
 
-        Sucursal sucursal2 = new Sucursal("Sucursal 2", LocalTime.now(), LocalTime.now().plus(Duration.ofHours(8)));
+
+
+        Sucursal sucursal2 = Sucursal.builder()
+                .nombre("Sucursal 2")
+                .horarioApertura(LocalTime.now())
+                .horarioCierre(LocalTime.now().plus(Duration.ofHours(8)))
+                .build();
+
         sucursal2.setDomicilio(d2);
         sucursal2.addCategoria(categoria2);
         sucursal2.addPromocion(promocion1);
@@ -165,7 +276,12 @@ public class Main {
 
         //Empresa
 
-        Empresa empresa = new Empresa("Superempresa","Los Facultamigos S.A.", 2035620636);
+
+            Empresa empresa = Empresa.builder()
+                    .nombre("Superempresa")
+                    .razonSocial("Los Facultamigos S.A.")
+                    .cuil(2035620636)
+                    .build();
         empresa.addSucursal(sucursal1);
         empresa.addSucursal(sucursal2);
 
@@ -175,33 +291,75 @@ public class Main {
 
 
         //Facturas
-        Factura factura1 = new Factura(LocalDate.now(), 80, "akeu", "parqrqasd","pasdadad", FormaPago.MERCADOPAGO,5.0);
-        Factura factura2 = new Factura(LocalDate.now(), 90, "acadc", "587ad", "poadhaduah", FormaPago.EFECTIVO, 905.5);
 
+
+        Factura factura1 = Factura.builder()
+                .fechaFacturacion(LocalDate.now())
+                .mpPaymentId(80)
+                .mpMerchantOrderId("akeu")
+                .mpPreferenceId("afafasrae")
+                .mpPaymentType("fradrarar")
+                .formaPago(FormaPago.MERCADOPAGO)
+                .totalVenta(5.5)
+                .build();
+
+        Factura factura2 = Factura.builder()
+                .fechaFacturacion(LocalDate.now())
+                .mpPaymentId(81)
+                .mpMerchantOrderId("gsvascva")
+                .mpPreferenceId("vcxzvi")
+                .mpPaymentType("yuhrsfsf")
+                .formaPago(FormaPago.EFECTIVO)
+                .totalVenta(5.5)
+                .build();
 
         // Pedidos
 
-        Pedido pedido1 = new Pedido(LocalTime.now(), 5.0, 9.8,Estado.ENTREGADO,TipoDeEnvio.DELIVERY, FormaPago.MERCADOPAGO,LocalDate.now());
+        Pedido pedido1 = Pedido.builder()
+                .horaEstimadaFinalizacion(LocalTime.now())
+                .total(5.5)
+                .totalCosto(9.8)
+                .estado(Estado.PREPARACION)
+                .tipoDeEnvio(TipoDeEnvio.TAKEAWAY)
+                .formaPago(FormaPago.EFECTIVO)
+                .fechaPedido(LocalDate.now())
+                .build();
+
         pedido1.setFactura(factura1);
-        pedido1.setDomicilio(domicilio);
+        pedido1.setDomicilio(d1);
         pedido1.setSucursal(sucursal1);
         pedido1.addDetallesPedido(detallePedido1);
 
-        Pedido pedido2 = new Pedido(LocalTime.now(), 7.5, 767.6, Estado.PREPARACION,TipoDeEnvio.TAKEAWAY, FormaPago.EFECTIVO, LocalDate.now());
+        Pedido pedido2 = Pedido.builder()
+                .horaEstimadaFinalizacion(LocalTime.now())
+                .total(5.5)
+                .totalCosto(9.8)
+                .estado(Estado.PENDIENTE)
+                .tipoDeEnvio(TipoDeEnvio.DELIVERY)
+                .formaPago(FormaPago.MERCADOPAGO)
+                .fechaPedido(LocalDate.now())
+                .build();
+
         pedido2.setFactura(factura2);
-        pedido2.setDomicilio(domicilio2);
+        pedido2.setDomicilio(d2);
         pedido2.setSucursal(sucursal2);
         pedido2.addDetallesPedido(detallePedido2);
 
 
-
-
-
-
-
         //Clientes
-        Cliente cliente1 = new Cliente("David","Lopez","2615848235","locolope@gmail.com",LocalDate.now(), imagen, usuario1);
-        cliente1.addDomicilios(domicilio);
+//        Cliente cliente1 = new Cliente("David","Lopez","2615848235","locolope@gmail.com",LocalDate.now(), imagen, usuario1);
+
+        Cliente cliente1 = Cliente.builder()
+                .nombre("David")
+                .apellido("Lopez")
+                .telefono("2616649039")
+                .email("locolope@gmail.com")
+                .fechaNacimiento(LocalDate.now())
+                .imagen(imagen1)
+                .usuario(usuario1)
+                .build();
+
+        cliente1.addDomicilios(d1);
         cliente1.setImagen(imagen1);
         cliente1.setUsuario(usuario1);
         cliente1.addPedidos(pedido1);
@@ -209,8 +367,17 @@ public class Main {
 
 
 
-        Cliente cliente2 = new Cliente("Fomas","Terro","2613748194","fomi_del_campo@gmail.com",LocalDate.now(), imagen, usuario2);
-        cliente2.addDomicilios(domicilio2);
+
+        Cliente cliente2 = Cliente.builder()
+                .nombre("Fomas")
+                .apellido("Terro")
+                .telefono("2616849039")
+                .email("elFomi_capo_de_mza_666@gmail.com")
+                .fechaNacimiento(LocalDate.now())
+                .imagen(imagen2)
+                .usuario(usuario2)
+                .build();
+        cliente2.addDomicilios(d2);
         cliente2.setImagen(imagen2);
         cliente2.setUsuario(usuario2);
         cliente2.addPedidos(pedido1);

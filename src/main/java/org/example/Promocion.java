@@ -15,7 +15,7 @@ import java.util.Set;
 @SuperBuilder
 @ToString
 
-public class Promocion {
+public class Promocion extends Base {
 
     private String denominacion;
     private LocalDate fechaDesde;
@@ -23,7 +23,7 @@ public class Promocion {
     private LocalTime horaDesde;
     private LocalTime horaHasta;
     private double precioDescuento;
-    private double precioPromonocional;
+    private double precioPromocional;
     private TipoPromocion tipoPromocion;
     @Builder.Default
     private Set<Imagen> imagenes = new HashSet<>();
@@ -54,4 +54,9 @@ public class Promocion {
     public void removeArticulo(Articulo articulo) {
         articulos.remove(articulo);
     }
+    @Override
+    public String getInfo() {
+        return "";
+    }
+
 }

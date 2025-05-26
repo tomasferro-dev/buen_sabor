@@ -22,25 +22,13 @@ public class Pedido {
     private Estado estado;
     private TipoDeEnvio tipoDeEnvio;
     private FormaPago formaPago;
-    private LocalDate FechaPedido;
+    private LocalDate fechaPedido;
     @Builder.Default
     private Set<DetallePedido> detallePedidos = new HashSet<>();
     private Sucursal sucursal;
     private Domicilio domicilio;
     private Factura factura;
 
-
-
-
-    public Pedido(LocalTime horaEstimadaFinalizacion, double total, double totalCosto, Estado estado, TipoDeEnvio tipoDeEnvio, FormaPago formaPago, LocalDate fechaPedido) {
-        this.horaEstimadaFinalizacion = horaEstimadaFinalizacion;
-        this.total = total;
-        this.totalCosto = totalCosto;
-        this.estado = estado;
-        this.tipoDeEnvio = tipoDeEnvio;
-        this.formaPago = formaPago;
-        FechaPedido = fechaPedido;
-    }
 
     public void addDetallesPedido(DetallePedido detallePedido) {
         if (detallePedidos == null) {
