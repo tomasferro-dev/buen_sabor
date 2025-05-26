@@ -1,7 +1,17 @@
 package org.example;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@SuperBuilder
+@ToString
 
 public class Sucursal {
 
@@ -37,50 +47,11 @@ public class Sucursal {
         categorias.remove(categoria);
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public LocalTime getHorarioApertura() {
-        return horarioApertura;
-    }
-
-    public void setHorarioApertura(LocalTime horarioApertura) {
-        this.horarioApertura = horarioApertura;
-    }
-
-    public LocalTime getHorarioCierre() {
-        return horarioCierre;
-    }
-
-    public void setHorarioCierre(LocalTime horarioCierre) {
-        this.horarioCierre = horarioCierre;
-    }
-
-
-
     public void addPromocion (Promocion promocion){
         this.promociones.add(promocion);
     }
 
-
-
-
-    @Override
-    public String toString() {
-        return "Sucursal{" +
-                "nombre='" + nombre + '\'' +
-                ", horarioApertura=" + horarioApertura +
-                ", horarioCierre=" + horarioCierre +
-
-                ", promociones=" + promociones +
-
-                ", categorias=" + categorias +
-                ", domicilio=" + domicilio +
-                '}';
+    public void removePromocion(Promocion promocion) {
+        promociones.remove(promocion);
     }
 }
