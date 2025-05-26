@@ -1,15 +1,18 @@
 package org.example;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@ToString
 
 public class Empresa {
-
-
-    @Getter
-    @Setter
+    
     private String nombre;
     private String razonSocial;
     private Integer cuil;
@@ -22,8 +25,6 @@ public class Empresa {
         this.cuil = Cuil;
     }
 
-
-
     public void addSucursal(Sucursal sucursal){
         this.sucursales.add(sucursal);
 
@@ -34,13 +35,4 @@ public class Empresa {
     }
 
 
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "nombre='" + nombre + '\'' +
-                ", razonSocial='" + razonSocial + '\'' +
-                ", cuil=" + cuil +
-                ", sucursales=" + sucursales +
-                '}';
-    }
 }
